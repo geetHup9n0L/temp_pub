@@ -10,6 +10,11 @@ JADX:
 
 https://github.com/skylot/jadx/wiki
 
+```
+jadx-gui app.apk # — GUI only, in memory
+jadx -d ./output/ app.apk # - create a file  system
+```
+
 Android RE:
 
 https://github.com/maddiestone/AndroidAppRE
