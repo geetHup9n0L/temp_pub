@@ -43,3 +43,12 @@ wget https://github.com/OWASP/mastg/raw/master/Crackmes/Android/Level_01/UnCrack
 # Open in JADX-GUI
 jadx-gui UnCrackable-Level1.apk
 ```
+
+```
+# find package
+adb shell pm list packages | grep -i "keyword"
+# find files
+adb shell pm path your.package.name
+# extract files
+adb pull /data/app/~~random_string==/your.package.name-random_string==/base.apk ./extracted_app.apk
+```
