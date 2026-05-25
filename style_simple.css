@@ -15,6 +15,11 @@ body {
     /* YÊU CẦU 2: Sử dụng background-image (dùng gradient đơn giản 2 màu) */
     background-image: linear-gradient(#f0f0f0, #e0e0e0);
     background-attachment: fixed; /* Giữ nền cố định khi cuộn */
+
+    /* GIẢI PHÁP STICKY FOOTER: Đẩy footer sát xuống đáy màn hình */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Chiều cao tối thiểu bằng 100% màn hình */
 }
 
 /* 1. HEADER & THANH ĐIỀU HƯỚNG */
@@ -98,6 +103,10 @@ body {
     margin: 20px auto;
     padding: 20px;
     max-width: 960px;
+    
+    /* GIẢI PHÁP STICKY FOOTER: */
+    flex: 1; /* Tự động kéo giãn chiều cao để đẩy footer sát xuống đáy */
+    
     min-height: 400px; /* Chiều cao tối thiểu */
     gap: 20px; /* Khoảng cách giữa 2 cột */
 }
@@ -109,6 +118,7 @@ body {
     background-color: #ffffff;
     border: 1px solid #333333; /* Khung viền đen xám */
     text-align: left;
+    height: fit-content; /* Chiều cao tự co theo nội dung */
 }
 
 /* Cột phải */
@@ -134,6 +144,7 @@ body {
     color: #ffffff;
     padding: 15px;
     margin-top: 20px;
+    margin-bottom: 0; /* Đảm bảo không có khoảng cách ở dưới footer */
 }
 
 
