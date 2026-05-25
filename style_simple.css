@@ -1,0 +1,157 @@
+/* ==========================================================================
+   TÔNG MÀU SỬ DỤNG (CHỈ 3 MÀU ĐỂ TRÁNH LÚ):
+   1. Màu nền body: Xám nhạt (#f0f0f0)
+   2. Màu chủ đạo (Navbar/Footer): Đen xám (#333333)
+   3. Màu điểm nhấn (Text/Hover/Border): Xanh dương (#0066cc)
+   ========================================================================== */
+
+/* Thẻ chung */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333333; /* Màu chữ chính */
+    
+    /* YÊU CẦU 2: Sử dụng background-image (dùng gradient đơn giản 2 màu) */
+    background-image: linear-gradient(#f0f0f0, #e0e0e0);
+    background-attachment: fixed; /* Giữ nền cố định khi cuộn */
+}
+
+/* 1. HEADER & THANH ĐIỀU HƯỚNG */
+.navbar-container {
+    position: fixed; /* Cố định thanh điều hướng ở đầu trang */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333333; /* Màu đen xám */
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex; /* Sắp xếp hàng ngang bằng Flexbox */
+    justify-content: center; /* Căn giữa các mục */
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+}
+
+.nav-item {
+    padding: 5px 15px;
+}
+
+.nav-item a {
+    color: #ffffff; /* Chữ trắng */
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s; /* Hiệu ứng mượt khi hover */
+}
+
+/* Hover đổi màu */
+.nav-item a:hover {
+    color: #0066cc; /* Chuyển sang xanh dương */
+}
+
+/* MENU DROPDOWN (THỬ THÁCH) */
+.nav-item-dropdown {
+    position: relative; /* Gốc tọa độ cho menu con absolute */
+}
+
+.dropdown-menu {
+    display: none; /* Ẩn mặc định */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333333;
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+    width: 150px;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+/* Hover vào mục cha thì hiện menu con */
+.nav-item-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Tiêu đề trang */
+.hero-section {
+    text-align: center; /* Căn giữa text */
+    padding: 100px 20px 20px 20px; /* Padding top lớn để tránh bị đè dưới navbar */
+    background-color: #e0e0e0;
+}
+
+.hero-section h1 {
+    font-size: 35px; /* Kích cỡ mặc định */
+    color: #0066cc;
+}
+
+
+/* 2. BỐ CỤC NỘI DUNG CHÍNH (MAIN) - 2 CỘT */
+.main-container {
+    display: flex; /* Bố cục Flexbox */
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 960px;
+    min-height: 400px; /* Chiều cao tối thiểu */
+    gap: 20px; /* Khoảng cách giữa 2 cột */
+}
+
+/* Cột trái */
+.column-left {
+    width: 35%; /* Chiếm 35% chiều rộng */
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #333333; /* Khung viền đen xám */
+    text-align: left;
+}
+
+/* Cột phải */
+.column-right {
+    width: 65%; /* Chiếm 65% chiều rộng */
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #333333;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #0066cc;
+}
+
+
+/* 3. FOOTER TÙY CHỈNH */
+#footer {
+    display: flex; /* Dùng Flexbox */
+    justify-content: space-around; /* Căn lề đều */
+    background-color: #333333;
+    color: #ffffff;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+
+/* 4. RESPONSIVE CƠ BẢN */
+@media screen and (max-width: 768px) {
+    /* Đưa 2 cột chính thành 1 cột dọc (thay đổi hướng Flexbox) */
+    .main-container {
+        flex-direction: column;
+    }
+    
+    /* Cho các cột rộng 100% khi xếp dọc */
+    .column-left, .column-right {
+        width: 100%;
+        box-sizing: border-box; /* Đảm bảo padding không làm tràn chiều rộng */
+    }
+    
+    /* Điều chỉnh font-size tiêu đề nhỏ hơn cho màn hình di động */
+    .hero-section h1 {
+        font-size: 24px;
+    }
+}

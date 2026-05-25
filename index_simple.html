@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Don Gian - LongLM</title> 
+    <!-- Lien ket toi file CSS don gian hoa -->
+    <link rel="stylesheet" href="style_simple.css"> 
+</head>
+<body>
+    <!-- 1. HEADER & NAVIGATION -->
+    <header id="header">
+        <nav class="navbar-container">
+            <ul class="navbar">
+                <li class="nav-item"><a href="#">Trang chủ</a></li>
+                <li class="nav-item"><a href="#">Giới thiệu</a></li>
+                <!-- Dropdown menu -->
+                <li class="nav-item nav-item-dropdown">
+                    <a href="#">Tài liệu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Web development</a></li>
+                        <li><a href="#">Cybersecurity</a></li>
+                        <li><a href="#">Martial Arts</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="hero-section">
+            <h1>BLOG CÁ NHÂN</h1>
+            <p>Chào mừng bạn đến với trang của tôi</p>
+        </div>
+    </header>
+
+    <!-- 2. MAIN CONTENT (2 COLUMNS) -->
+    <main class="main-container">
+        <!-- Cot Trai: Gioi thieu -->
+        <section id="gioi-thieu" class="column-left">
+            <h2>Giới thiệu bản thân</h2>
+            <img src="profile_avatar.png" alt="Profile Image" class="profile-img">
+            <p>Tên tôi là Long, là sinh viên An toàn thông tin.</p>
+            <p>Nơi ở: Hà Nội</p>
+            <div class="social-links">
+                <a href="#">Facebook</a> | 
+                <a href="#">Github</a> | 
+                <a href="#">LinkedIn</a>
+            </div>
+        </section>
+
+        <!-- Cot Phai: Thanh tuu & Q&A -->
+        <div class="column-right">
+            <section id="noi-dung">
+                <h2>Thành tựu & Mục tiêu</h2>
+                <h3>Thành tựu</h3>
+                <ul>
+                    <li>Học thể thao</li>
+                    <li>Tham gia CLB</li>
+                </ul>
+                <h3>Mục tiêu</h3>
+                <ul>
+                    <li>Học chứng chỉ</li>
+                    <li>Đi thực tập</li>
+                </ul>
+            </section>
+
+            <section id="cau-hoi">
+                <h2>Q&A</h2>
+                <form>
+                    <label>Đặt câu hỏi:</label>
+                    <input type="text">
+                    <button type="submit">Gửi</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- 3. FOOTER -->
+    <footer id="footer">
+        <p>@Copyright: LongLM</p>
+        <p>Contact: 0123456789</p>
+    </footer>
+</body>
+</html>
