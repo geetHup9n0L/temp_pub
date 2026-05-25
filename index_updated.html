@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blog Cá Nhân - LongLM</title> 
+        <link rel="stylesheet" href="style_updated.css"> 
+    </head>
+    <body>
+        <!-- HEADER & FIXED NAVBAR -->
+        <header id="header">
+            <nav class="navbar-container">
+                <ul class="navbar">
+                    <li class="nav-item"><a href="#">Trang chủ</a></li>
+                    <li class="nav-item"><a href="#">Giới thiệu</a></li>
+                    <li class="nav-item nav-item-dropdown">
+                        <a href="#">Tài liệu <span class="dropdown-arrow">&#9662;</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Web development</a></li>
+                            <li><a href="#">Cybersecurity</a></li>
+                            <li><a href="#">Martial Arts</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="hero-section">
+                <h1>BLOG CÁ NHÂN</h1>
+                <p>Chào mừng bạn đến với trang của tôi</p>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENTS (2-COLUMN LAYOUT) -->
+        <main class="main-container">
+            <!-- LEFT COLUMN: INTRODUCTION -->
+            <section id="gioi-thieu" class="column column-left">
+                <h2>Giới thiệu bản thân</h2>
+                <div class="profile-image-container">
+                    <img src="profile_avatar.png" alt="Profile avatar" class="profile-img">
+                </div>
+                <div class="bio-content">
+                    <p>
+                        Tên tôi là <strong>Long</strong>, là sinh viên đang theo học đại học và ước muốn không ngừng phát triển bản thân vì một tương lai tươi sáng.
+                    </p>
+                    <ul class="info-list">
+                        <li><strong>Trường:</strong> Đại học Công nghệ</li>
+                        <li><strong>Ngành:</strong> An toàn thông tin (Info Sec)</li>
+                        <li><strong>Nơi ở:</strong> Hà Nội</li>
+                        <li><strong>Nơi thực tập:</strong> SECURETECH</li>
+                    </ul>
+                </div>
+
+                <div class="social-links-section">
+                    <h4>Các trang khác về tôi:</h4>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-btn facebook">Facebook</a>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-btn github">Github</a>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-btn linkedin">LinkedIn</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT COLUMN: CONTENT & FORM -->
+            <div class="column column-right">
+                <section id="noi-dung">
+                    <h2>Quá trình & Định hướng</h2>
+                    
+                    <div class="card">
+                        <h3>Thành tựu đạt được</h3>
+                        <ul class="custom-list">
+                            <li>Chọn một bộ môn thể thao làm sở thích</li>
+                            <li>Tham gia vào CLB của trường</li>
+                            <li>Xin đi thực tập</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Các mục tiêu hiện tại</h3>
+                        <ul class="custom-list">
+                            <li>Tìm một bộ môn thể thao sở thích tiếp theo</li>
+                            <li>Trong quá trình thực tập, học được nhiều nhất có thể</li>
+                            <li>Học thêm các chứng chỉ chuyên môn</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Định hướng phát triển</h3>
+                        <p class="highlight-text">
+                            Mục tiêu là xây dựng nền tảng và kỹ năng thực tế với bề dày 6 - 12 tháng trước khi ra trường.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- FORM Q&A -->
+                <section id="cau-hoi" class="card">
+                    <h2>Q&A (Hỏi & Đáp)</h2>
+                    <form class="qa-form" action="#" method="get">
+                        <label for="input-question">Hãy đặt câu hỏi cho mình:</label>
+                        <div class="form-group">
+                            <input type="text" id="input-question" placeholder="Nhập câu hỏi của bạn tại đây..." required>
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer id="footer">
+            <div class="footer-container">
+                <div class="footer-info">
+                    <p>&copy; 2026 Copyright: <strong>LongLM</strong></p>
+                </div>
+                <div class="footer-contact">
+                    <p>Contact: <strong>0123456789</strong></p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

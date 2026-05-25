@@ -1,0 +1,396 @@
+/* GLOBAL STYLES */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* YÊU CẦU 2: Sử dụng background-image cho nền body */
+    background-image: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    background-attachment: fixed;
+    color: #f1f5f9;
+    line-height: 1.6;
+}
+
+/* YÊU CẦU 1: HEADER & FIXED NAVBAR */
+#header {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-container {
+    position: fixed; /* Khóa thanh điều hướng ở đầu trang */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(15, 23, 42, 0.95); /* Màu nền tối bán trong suốt */
+    backdrop-filter: blur(8px); /* Hiệu ứng kính mờ (glassmorphism) */
+    border-bottom: 1px solid #334155;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center; /* Căn giữa các mục điều hướng */
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 15px 0;
+    gap: 30px;
+}
+
+.nav-item a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Hiệu ứng mượt mà */
+}
+
+/* Hiệu ứng hover đổi màu mục điều hướng */
+.nav-item a:hover {
+    color: #38bdf8; /* Đổi sang màu xanh dương nhạt hiện đại */
+    background-color: rgba(56, 189, 248, 0.1);
+}
+
+/* MENU DROPDOWN (THỬ THÁCH) */
+.nav-item-dropdown {
+    position: relative; /* Làm điểm mốc định vị cho menu con */
+}
+
+.nav-item-dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropdown-arrow {
+    font-size: 12px;
+}
+
+.dropdown-menu {
+    display: none; /* Ẩn menu dropdown ban đầu */
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* Căn giữa theo trục dọc với thẻ cha */
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    list-style: none;
+    padding: 8px 0;
+    margin: 8px 0 0 0;
+    min-width: 180px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); /* Đổ bóng mịn */
+}
+
+/* Tạo một mũi tên nhỏ ở trên cùng của dropdown */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #1e293b transparent;
+}
+
+.dropdown-menu li a {
+    display: block;
+    color: #94a3b8;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 0;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #334155;
+    color: #38bdf8;
+}
+
+/* Hiển thị dropdown khi hover */
+.nav-item-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* HERO SECTION (BLOG CÁ NHÂN) */
+.hero-section {
+    text-align: center;
+    padding: 130px 20px 50px 20px; /* Padding top lớn để không bị navbar đè lên */
+    background-image: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+    border-bottom: 1px solid #4338ca;
+}
+
+.hero-section h1 {
+    font-size: 42px;
+    margin: 0 0 10px 0;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Hiệu ứng chữ chuyển màu gradient */
+}
+
+.hero-section p {
+    font-size: 16px;
+    color: #94a3b8;
+    margin: 0;
+}
+
+/* YÊU CẦU 2: BỐ CỤC NỘI DUNG CHÍNH 2 CỘT (FLEXBOX) */
+.main-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    gap: 30px;
+    min-height: 600px; /* Đảm bảo chiều cao tối thiểu */
+}
+
+/* Các thuộc tính chung cho cột */
+.column {
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* Cột trái (Giới thiệu bản thân) */
+.column-left {
+    flex: 1; /* Chiếm 1 phần */
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    height: fit-content; /* Vừa vặn nội dung */
+}
+
+/* Cột phải (Quá trình & Form Q&A) */
+.column-right {
+    flex: 1.8; /* Chiếm 1.8 phần (rộng hơn cột trái) */
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Khoảng cách giữa các card */
+}
+
+.card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* ĐỊNH DẠNG CHI TIẾT NỘI DUNG */
+h2, h3, h4 {
+    color: #38bdf8;
+    margin-top: 0;
+}
+
+/* Profile Image */
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    object-fit: cover;
+    background-color: #0f172a; /* Nền dự phòng nếu ảnh lỗi */
+}
+
+/* Info List */
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.info-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #334155;
+    font-size: 15px;
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+/* Social Buttons */
+.social-links-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.facebook { background-color: #1877f2; }
+.github { background-color: #24292e; }
+.linkedin { background-color: #0a66c2; }
+
+/* Lists in Right Column */
+.custom-list {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.custom-list li {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.highlight-text {
+    font-size: 16px;
+    border-left: 4px solid #818cf8;
+    padding-left: 15px;
+    margin: 0;
+    font-style: italic;
+    color: #cbd5e1;
+}
+
+/* FORM Q&A */
+.qa-form {
+    margin-top: 15px;
+}
+
+.qa-form label {
+    display: block;
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+.form-group {
+    display: flex;
+    gap: 10px;
+}
+
+.qa-form input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.qa-form input[type="text"]:focus {
+    border-color: #38bdf8;
+}
+
+.qa-form button {
+    padding: 12px 24px;
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.qa-form button:hover {
+    background-color: #7dd3fc;
+}
+
+.qa-form button:active {
+    transform: scale(0.98);
+}
+
+/* YÊU CẦU 3: FOOTER TÙY CHỈNH (FLEXBOX) */
+#footer {
+    background-color: #0f172a;
+    border-top: 1px solid #334155;
+    padding: 25px 0;
+    margin-top: 60px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between; /* Căn lề hai bên */
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-container p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.footer-container p strong {
+    color: #f1f5f9;
+}
+
+/* YÊU CẦU 4: RESPONSIVE CƠ BẢN */
+@media screen and (max-width: 768px) {
+    /* 1. Đưa 2 cột nội dung chính thành 1 cột dọc */
+    .main-container {
+        flex-direction: column;
+        padding: 0 15px;
+        margin: 20px auto;
+        gap: 20px;
+    }
+    
+    .column-left {
+        max-width: 100%; /* Đảm bảo cột trái rộng hết cỡ */
+    }
+
+    /* 2. Điều chỉnh kích thước font-size cho màn hình di động */
+    .hero-section h1 {
+        font-size: 30px; /* Thu nhỏ tiêu đề chính h1 */
+    }
+    
+    .hero-section {
+        padding: 110px 15px 40px 15px; /* Giảm bớt padding của hero */
+    }
+
+    /* Điều chỉnh các liên kết mạng xã hội vừa vặn */
+    .social-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .social-btn {
+        padding: 12px 0;
+    }
+
+    /* Đưa footer về dạng dọc trên di động */
+    .footer-container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
