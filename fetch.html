@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Questions App</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 0 10px; }
+        form { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; background: #f9f9f9; }
+        input[type="text"] { width: 70%; padding: 8px; margin-right: 10px; }
+        button { padding: 8px 12px; cursor: pointer; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .actions button { margin-left: 5px; }
+        .edit-mode { background-color: #fff9e6; }
+    </style>
+</head>
+<body>
+
+    <h2>Manage Questions (CRUD)</h2>
+
+    <form id="questionForm">
+        <input type="hidden" id="questionId">
+        <input type="text" id="questionInput" placeholder="Enter your question here..." required>
+        <button type="submit" id="submitBtn">Add Question</button>
+        <button type="button" id="cancelBtn" style="display: none;">Cancel</button>
+    </form>
+
+    <h3>All Questions</h3>
+    <ul id="questionsList">
+        </ul>
+
+    <script>
+        // Using JSONPlaceholder 'posts' as a proxy for 'questions'
+        const API_URL = 'https://jsonplaceholder.typicode.com/posts';
+        
+        // DOM Elements
+        const questionForm = document.getElementById('questionForm');
+        const questionInput = document.getElementById('questionInput');
+        const questionIdInput = document.getElementById('questionId');
+        const submitBtn = document.getElementById('submitBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const questionsList = document.getElementById('questionsList');
+
+        // State tracker (since the mock API won't actually persist data permanently)
+        let localQuestions = [];
+
+        // 1. READ (GET) - Fetch questions on load
+        async function fetchQuestions() {
+            try {
+                // Fetching just 5 items for a clean UI
+                const response = await fetch(`${API_URL}?_limit=5`);
+                const data = await response.json();
+                
+                // Mapping API 'title' to our concept of a 'question'
+                localQuestions = data.map(item => ({ id: item.id, text: item.title }));
+                renderQuestions();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Render function to handle UI updates
+        function renderQuestions() {
+            questionsList.innerHTML = '';
+            localQuestions.forEach(q => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${q.text}</span>
+                    <div class="actions">
+                        <button onclick="setupEdit(${q.id}, '${q.text.replace(/'/g, "\\'")}')">Edit</button>
+                        <button onclick="deleteQuestion(${q.id})">Delete</button>
+                    </div>
+                `;
+                questionsList.appendChild(li);
+            });
+        }
+
+        // Handle Form Submit (Handles both CREATE and UPDATE)
+        questionForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const text = questionInput.value.trim();
+            const id = questionIdInput.value;
+
+            if (id) {
+                // 3. UPDATE (PUT)
+                await updateQuestion(id, text);
+            } else {
+                // 2. CREATE (POST)
+                await createQuestion(text);
+            }
+            
+            resetForm();
+        });
+
+        // 2. CREATE (POST) Function
+        async function createQuestion(text) {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title: text, body: '', userId: 1 })
+                });
+                const newQuestion = await response.json();
+                
+                // Push to local array to simulate successful DB insertion
+                localQuestions.unshift({ id: newQuestion.id, text: text });
+                renderQuestions();
+            } catch (error) {
+                console.error('Error creating question:', error);
+            }
+        }
+
+        // 3. UPDATE (PUT) Function
+        async function updateQuestion(id, text) {
+            try {
+                const response = await fetch(`${API_URL}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id, title: text, userId: 1 })
+                });
+                
+                // Update local state
+                localQuestions = localQuestions.map(q => q.id == id ? { ...q, text: text } : q);
+                renderQuestions();
+            } catch (error) {
+                console.error('Error updating question:', error);
+            }
+        }
+
+        // 4. DELETE (DELETE) Function
+        async function deleteQuestion(id) {
+            try {
+                await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                
+                // Filter out item from local state
+                localQuestions = localQuestions.filter(q => q.id !== id);
+                renderQuestions();
+            } catch (error) {
+                console.error('Error deleting question:', error);
+            }
+        }
+
+        // UI Helpers for editing states
+        function setupEdit(id, text) {
+            questionIdInput.value = id;
+            questionInput.value = text;
+            submitBtn.innerText = 'Update Question';
+            cancelBtn.style.display = 'inline-block';
+            questionInput.focus();
+        }
+
+        function resetForm() {
+            questionIdInput.value = '';
+            questionForm.reset();
+            submitBtn.innerText = 'Add Question';
+            cancelBtn.style.display = 'none';
+        }
+
+        cancelBtn.addEventListener('click', resetForm);
+
+        // Initial fetch on page load
+        fetchQuestions();
+    </script>
+</body>
+</html>
