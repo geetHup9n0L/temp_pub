@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.insecurebank">
+
+    <!-- MASVS-STORAGE-1: android:allowBackup set to true allows ADB backup extraction -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="InsecureBankDemo"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+
+        <!-- Main Login Activity -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 
+            MASVS-PLATFORM-1: TransferActivity is exported and has no custom permissions/protection.
+            This allows arbitrary third-party applications or adb to trigger transfers and bypass authentication.
+        -->
+        <activity
+            android:name=".TransferActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.insecurebank.action.TRANSFER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
