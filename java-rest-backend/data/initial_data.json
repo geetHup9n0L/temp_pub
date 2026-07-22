@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Bluetooth Headphones",
+    "category": "Electronics",
+    "price": 59.99,
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "name": "Ergonomic Mechanical Keyboard",
+    "category": "Electronics",
+    "price": 119.50,
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "name": "Stainless Steel Water Bottle",
+    "category": "Fitness",
+    "price": 24.90,
+    "inStock": false
+  },
+  {
+    "id": 4,
+    "name": "Java Programming Guide Book",
+    "category": "Books",
+    "price": 39.95,
+    "inStock": true
+  }
+]
